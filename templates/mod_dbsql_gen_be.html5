@@ -1,0 +1,31 @@
+<style type="text/css">
+<!--/*--><![CDATA[/*><!--*/
+#dbsqlgen1, #dbsqlgen2 {
+	float:left;
+	width:50%;
+}
+/*]]>*/-->
+</style>
+<div id="tl_buttons">
+	<a href="<?php echo $this->referer;?>" class="header_back" title="<?php echo $this->backTitle;?>" accesskey="b" onclick="Backend.getScrollOffset();"><?php echo $this->backTitle;?></a>
+</div>
+
+<h2 class="sub_headline"><?php echo $this->Title;?></h2>
+<?php if ($this->warning): ?>
+<p class="tl_task_due"><?php echo $this->warning;?></p>
+<?php endif; ?>
+<div class="tl_listing_container">
+<?php echo $this->TableList;?><?php echo $this->TableInput;?>
+<?php if ($this->hint): ?>
+<div style="clear:left;"></div><p class="tl_update"><?php echo $this->hint;?></p>
+<?php endif; ?>
+<fieldset id="pal_title_modules" class="tl_tbox block<?php echo $this->collapsed;?>">
+<legend><?php echo $this->CTitle;?></legend>
+<div class="ce_code block">
+	<pre class="brush: text; gutter: false;auto-links: false;">
+<?php echo $this->DatabaseSQL; ?>
+	</pre>
+</div>
+</fieldset>
+<?php echo $this->shinit; ?>
+</div>

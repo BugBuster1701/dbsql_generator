@@ -1,0 +1,7 @@
+/* Style sheet dbsql_generator backend */
+.syntaxhighlighter, .syntaxhighlighter div, .syntaxhighlighter code, .syntaxhighlighter span
+{
+	font-family:"Andale Mono",monospace !important;
+	font-size:12px !important;
+	line-height:16px !important;
+}

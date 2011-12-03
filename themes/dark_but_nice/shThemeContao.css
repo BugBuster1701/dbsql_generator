@@ -1,0 +1,20 @@
+/* Style sheet dbsql_generator backend */
+.syntaxhighlighter, .syntaxhighlighter div, .syntaxhighlighter code, .syntaxhighlighter span
+{
+	font-family:"Andale Mono",monospace !important;
+	font-size:12px !important;
+	line-height:16px !important;
+}
+
+.syntaxhighlighter .line.alt1, .syntaxhighlighter .line.alt2 {
+    background-color: #555555 !important;
+    border-bottom: 1px solid #333333 !important;
+}
+
+.syntaxhighlighter .plain, .syntaxhighlighter .plain a {
+    color: #DDDDDD !important;
+}
+
+.syntaxhighlighter table td.code .container textarea {
+    background: none repeat scroll 0 0 #555555 !important;
+}
