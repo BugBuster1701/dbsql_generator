@@ -17,7 +17,7 @@
 <div class="tl_listing_container">
 <?php echo $this->TableList;?><?php echo $this->TableInput;?>
 <?php if ($this->hint): ?>
-<div style="clear:left;"></div><p class="tl_update"><?php echo $this->hint;?></p>
+<div style="clear:left;"></div><p class="tl_info"><?php echo $this->hint;?></p>
 <?php endif; ?>
 <fieldset id="pal_title_modules" class="tl_tbox block<?php echo $this->collapsed;?>">
 <legend><?php echo $this->CTitle;?></legend>

@@ -2,7 +2,7 @@
 
 /**
  * Contao Open Source CMS
- * Copyright (C) 2005-2011 Leo Feyer
+ * Copyright (C) 2005-2012 Leo Feyer
  *
  * Formerly known as TYPOlight Open Source CMS.
  *
@@ -21,7 +21,7 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  Glen Langer 2011 
+ * @copyright  Glen Langer 2011..2012 
  * @author     BugBuster 
  * @package    DatabaseGenerator 
  * @license    LGPL 
@@ -31,7 +31,7 @@
 /**
  * Class DBSQLGenerator
  * 
- * @copyright  Glen Langer 2011 
+ * @copyright  Glen Langer 2011..2012 
  * @author     BugBuster 
  * @package    DatabaseGenerator
  */
@@ -103,7 +103,7 @@ class DBSQLGenerator extends BackendModule
 	/**
 	 * Current version of the class.
 	 */
-	const DBSQLGenerator_VERSION = '1.3.0';
+	const DBSQLGenerator_VERSION = '1.3.1';
 	
 	/**
 	 * Name of session name
@@ -248,7 +248,7 @@ class DBSQLGenerator extends BackendModule
 	 */
 	protected function getAllTables()
 	{
-		$r1 = '<select onfocus="Backend.getScrollOffset();" style="padding:1px;width:100%;" name="list_table">';
+		$r1 = '<select class="tl_select" name="list_table">';
 		$r2 = "\n";
 		foreach (array_keys($this->_arrTables) as $key => $table)
 		{
