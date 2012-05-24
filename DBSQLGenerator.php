@@ -1,32 +1,24 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php 
 
 /**
  * Contao Open Source CMS
  * Copyright (C) 2005-2012 Leo Feyer
  *
- * Formerly known as TYPOlight Open Source CMS.
- *
- * This program is free software: you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation, either
- * version 3 of the License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- * 
- * You should have received a copy of the GNU Lesser General Public
- * License along with this program. If not, please visit the Free
- * Software Foundation website at <http://www.gnu.org/licenses/>.
+ * @link http://www.contao.org
+ * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  *
  * PHP version 5
  * @copyright  Glen Langer 2011..2012 
  * @author     BugBuster 
  * @package    DatabaseGenerator 
  * @license    LGPL 
- * @filesource
  */
+
+
+/**
+ * Run in a custom namespace, so the class can be replaced
+ */
+namespace BugBuster\DatabaseGenerator;
 
 /**
  * Class DBSQLGenerator
@@ -35,7 +27,7 @@
  * @author     BugBuster 
  * @package    DatabaseGenerator
  */
-class DBSQLGenerator extends BackendModule
+class DBSQLGenerator extends \BackendModule
 {
 
 	/**
@@ -103,7 +95,7 @@ class DBSQLGenerator extends BackendModule
 	/**
 	 * Current version of the class.
 	 */
-	const DBSQLGenerator_VERSION = '1.3.1';
+	const DBSQLGenerator_VERSION = '3.0.0';
 	
 	/**
 	 * Name of session name
@@ -115,13 +107,13 @@ class DBSQLGenerator extends BackendModule
 	 */
 	protected function compile()
 	{
-		if (version_compare(VERSION . '.' . BUILD, '2.9.9', '>'))
+		if (version_compare(VERSION . '.' . BUILD, '2.11.99', '>'))
 		{
-		   // Code für Versionen ab 2.10 rc1
+		   // Code für Versionen ab 3.0 beta
 		   $this->_token = REQUEST_TOKEN;
 		   $this->Template->warning = false;
 		} else {
-			// Code für Versionen < 2.10.0
+			// Code für Versionen < 3.0 beta
 		   $this->Template->warning = $GLOBALS['TL_LANG']['BackendDBGenerator']['warning'];
 		}
 
@@ -141,20 +133,20 @@ class DBSQLGenerator extends BackendModule
 		
 		
 
-		if ($this->Input->post('generate_sql') ==1)
+		if (\Input::post('generate_sql') ==1)
 		{
-		    $this->_table = $this->Input->post('list_table');
+		    $this->_table = \Input::post('list_table');
 		    $this->setSession(); // table in session
 			$this->Template->DatabaseSQL = $this->getDatabaseSQL();
 			$this->Template->collapsed ='';
 			$this->Template->hint = $GLOBALS['TL_LANG']['BackendDBGenerator']['hint'];
 			// Add CSS
-			$GLOBALS['TL_CSS'][] = 'plugins/highlighter/shCore.css?'. HIGHLIGHTER .'|screen';
+			$GLOBALS['TL_CSS'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/shCore.css?'. HIGHLIGHTER .'|screen';
 			$GLOBALS['TL_CSS'][] = 'system/modules/dbsql_generator/themes/'.$this->_beTheme.'/shThemeContao.css?' . self::DBSQLGenerator_VERSION .'|screen';
 			// Add scripts
-			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/XRegExp.js?' . HIGHLIGHTER;
-			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/shCore.js?' . HIGHLIGHTER;
-			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/shBrushPlain.js?' . HIGHLIGHTER;
+			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/XRegExp.js?' . HIGHLIGHTER;
+			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/shCore.js?' . HIGHLIGHTER;
+			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/shBrushPlain.js?' . HIGHLIGHTER;
 			// Add Init
 			$strInit  = '<script>' . "\n";
 			$strInit .= 'SyntaxHighlighter.defaults.toolbar = false;' . "\n";
@@ -162,20 +154,20 @@ class DBSQLGenerator extends BackendModule
 			$strInit .= '</script>';
 			$this->Template->shinit = $strInit;
 		}
-		if ($this->Input->post('generate_sql_pf') ==1)
+		if (\Input::post('generate_sql_pf') ==1)
 		{
-		    $this->_table_pf = trim($this->Input->post('table_prefix'));
+		    $this->_table_pf = trim(\Input::post('table_prefix'));
 		    $this->setSession(); // table prefix in session
 			$this->Template->DatabaseSQL = $this->getDatabaseSQLpf();
 			$this->Template->collapsed ='';
 			$this->Template->hint = $GLOBALS['TL_LANG']['BackendDBGenerator']['hint'];
 			// Add CSS
-			$GLOBALS['TL_CSS'][] = 'plugins/highlighter/shCore.css?'. HIGHLIGHTER .'|screen';
+			$GLOBALS['TL_CSS'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/shCore.css?'. HIGHLIGHTER .'|screen';
 			$GLOBALS['TL_CSS'][] = 'system/modules/dbsql_generator/themes/'.$this->_beTheme.'/shThemeContao.css?' . self::DBSQLGenerator_VERSION .'|screen';
 			// Add scripts
-			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/XRegExp.js?' . HIGHLIGHTER;
-			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/shCore.js?' . HIGHLIGHTER;
-			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/shBrushPlain.js?' . HIGHLIGHTER;
+			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/XRegExp.js?' . HIGHLIGHTER;
+			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/shCore.js?' . HIGHLIGHTER;
+			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/shBrushPlain.js?' . HIGHLIGHTER;
 			// Add Init
 			$strInit  = '<script>' . "\n";
 			$strInit .= 'SyntaxHighlighter.defaults.toolbar = false;' . "\n";
