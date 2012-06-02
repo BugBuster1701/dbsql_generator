@@ -107,7 +107,7 @@ class DBSQLGenerator extends \BackendModule
 	 */
 	protected function compile()
 	{
-		if (version_compare(VERSION . '.' . BUILD, '2.11.99', '>'))
+		if (version_compare(VERSION, '2.99', '>'))
 		{
 		   // Code für Versionen ab 3.0 beta
 		   $this->_token = REQUEST_TOKEN;
@@ -318,7 +318,7 @@ class DBSQLGenerator extends \BackendModule
 		//$tables = preg_grep('/^tl_/i', $this->Database->listTables());
 		$tables = $this->Database->listTables();
 
-		if (!count($tables))
+		if (empty($tables))
 		{
 			return array();
 		}
@@ -327,7 +327,7 @@ class DBSQLGenerator extends \BackendModule
 
 		foreach ($tables as $table)
 		{
-			$fields = $this->Database->listFields($table);
+			$fields = $this->Database->listFields($table, true);
 
 			foreach ($fields as $field)
 			{
@@ -341,20 +341,16 @@ class DBSQLGenerator extends \BackendModule
 					// Field type
 					if (strlen($field['length']))
 					{
-						$field['type'] .= '(' . $field['length'] . (strlen($field['precision']) ? ',' . $field['precision'] : '') . ')';
+						$field['type'] .= '(' . $field['length'] . (($field['precision'] != '') ? ',' . $field['precision'] : '') . ')';
 
 						unset($field['length']);
 						unset($field['precision']);
 					}
 
 					// Default values
-					if (in_array(strtolower($field['type']), array('text', 'tinytext', 'mediumtext', 'longtext', 'blob', 'tinyblob', 'mediumblob', 'longblob')) || stristr($field['extra'], 'auto_increment'))
+				    if (in_array(strtolower($field['type']), array('text', 'tinytext', 'mediumtext', 'longtext', 'blob', 'tinyblob', 'mediumblob', 'longblob')) || stristr($field['extra'], 'auto_increment') || $field['default'] === null || strtolower($field['default']) == 'null')
 					{
 						unset($field['default']);
-					}
-					elseif (is_null($field['default']) || strtolower($field['default']) == 'null')
-					{
-						$field['default'] = "default NULL";
 					}
 					else
 					{
