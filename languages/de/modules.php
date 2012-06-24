@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php
 
 /**
  * Contao Open Source CMS
@@ -20,5 +20,3 @@
  */
 $GLOBALS['TL_LANG']['MOD']['development']     = 'Entwickler-Hilfe';
 $GLOBALS['TL_LANG']['MOD']['dbsql_generator'] = array('database.sql Generator', 'database.sql Generator.');
-
-?>
