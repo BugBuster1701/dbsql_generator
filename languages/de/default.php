@@ -42,6 +42,6 @@ $GLOBALS['TL_LANG']['BackendDBGenerator']['table_pf_not_found'] = 'Kein Tabelle 
 $GLOBALS['TL_LANG']['MSC']['backBT']                = 'Zurück';
 
 $GLOBALS['TL_LANG']['BackendDBGenerator']['warning'] = 'ERROR: Ab Version 1.3.0 benötigt der database.sql Generator mindestens Contao 2.10';
-$GLOBALS['TL_LANG']['BackendDBGenerator']['hint']    = 'Mit einem Doppelklick auf die Code-Ansicht, wird diese mit einer vorgewählten Sicht ersetzt. Es kann nun mit Ctrl/Strg/Cmd-C der Code kopiert werden. Ein Klick anderswo stellt den ursprünglichen Zustand wieder her.'
+$GLOBALS['TL_LANG']['BackendDBGenerator']['hint']    = 'Mit einem Doppelklick auf die Code-Ansicht, wird diese mit einer vorgewählten Sicht ersetzt. Es kann nun mit Ctrl/Strg/Cmd-C der Code kopiert werden. Ein Klick anderswo stellt den ursprünglichen Zustand wieder her.';
 
 ?>

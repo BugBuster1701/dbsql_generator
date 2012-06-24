@@ -42,6 +42,6 @@ $GLOBALS['TL_LANG']['BackendDBGenerator']['table_pf_not_found'] = 'No tables fou
 $GLOBALS['TL_LANG']['MSC']['backBT']                = 'Go back';
 
 $GLOBALS['TL_LANG']['BackendDBGenerator']['warning'] = 'ERROR: From version 1.3.0, database.sql Generator requires at least Contao 2.10';
-$GLOBALS['TL_LANG']['BackendDBGenerator']['hint']    = 'If you double click anywhere on the code, the entire code view is replaces with a pre-selected view from which you can copy with a simple Ctrl/Cmd-C. Clicking anywhere else returns the view to the original state.'
+$GLOBALS['TL_LANG']['BackendDBGenerator']['hint']    = 'If you double click anywhere on the code, the entire code view is replaces with a pre-selected view from which you can copy with a simple Ctrl/Cmd-C. Clicking anywhere else returns the view to the original state.';
 
 ?>
