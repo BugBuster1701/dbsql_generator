@@ -18,5 +18,5 @@
 /**
  * Back end module
  */
-$GLOBALS['TL_LANG']['MOD']['development']     = 'Developer help';
+$GLOBALS['TL_LANG']['MOD']['devtools']  = 'Developer tools';
 $GLOBALS['TL_LANG']['MOD']['dbsql_generator'] = array('database.sql Generator', 'database.sql Generator.');

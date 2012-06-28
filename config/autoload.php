@@ -25,8 +25,8 @@ ClassLoader::addNamespaces(array
  */
 ClassLoader::addClasses(array
 (
-	// Dbsql_generator
-	'BugBuster\DatabaseGenerator\DBSQLGenerator' => 'system/modules/dbsql_generator/DBSQLGenerator.php',
+	// Modules
+	'BugBuster\DatabaseGenerator\DBSQLGenerator' => 'system/modules/dbsql_generator/modules/DBSQLGenerator.php',
 ));
 
 

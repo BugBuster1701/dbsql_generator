@@ -25,8 +25,6 @@ $GLOBALS['TL_LANG']['BackendDBGenerator']['tables_pf']  = 'Tabellen Präfix';
 $GLOBALS['TL_LANG']['BackendDBGenerator']['table_pf_help'] = 'Hier können Sie einen Tabellen Präfix eingeben z.B. "tl_cal", es wird dann für alle Tabellen mit diesem Präfix die jeweiligen Create Statements generiert.';
 $GLOBALS['TL_LANG']['BackendDBGenerator']['table_pf_not_found'] = 'Kein Tabelle gefunden mit Präfix:';
 
-$GLOBALS['TL_LANG']['MSC']['backBT']                = 'Zurück';
-
 $GLOBALS['TL_LANG']['BackendDBGenerator']['warning'] = 'ERROR: Ab Version 3.0.0 benötigt der database.sql Generator mindestens Contao 3.0';
 $GLOBALS['TL_LANG']['BackendDBGenerator']['hint']    = 'Mit einem Doppelklick auf die Code-Ansicht, wird diese mit einer vorgewählten Sicht ersetzt. Es kann nun mit Ctrl/Strg/Cmd-C der Code kopiert werden. Ein Klick anderswo stellt den ursprünglichen Zustand wieder her.';
 

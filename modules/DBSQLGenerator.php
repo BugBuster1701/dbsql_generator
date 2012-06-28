@@ -112,7 +112,9 @@ class DBSQLGenerator extends \BackendModule
 		   // Code für Versionen ab 3.0 beta
 		   $this->_token = REQUEST_TOKEN;
 		   $this->Template->warning = false;
-		} else {
+		} 
+		else 
+		{
 			// Code für Versionen < 3.0 beta
 		   $this->Template->warning = $GLOBALS['TL_LANG']['BackendDBGenerator']['warning'];
 		}
@@ -267,7 +269,8 @@ class DBSQLGenerator extends \BackendModule
 	 */
 	protected function getDatabaseSQL()
 	{
-	    if ($this->Database->tableExists($this->_table) === false) {
+	    if ($this->Database->tableExists($this->_table) === false) 
+	    {
 	    	return "Wrong Selection, Table not found";
 	    }
 	    //$arrTables = $this->getFromDB();
@@ -300,7 +303,8 @@ class DBSQLGenerator extends \BackendModule
 	    		$r1 .= "\n";
 	    	}
 	    }
-	    if ($r1 == '') {
+	    if ($r1 == '') 
+	    {
 	    	$r1 = "-- --------------------------------------------------------\n\n-- \n-- ".$GLOBALS['TL_LANG']['BackendDBGenerator']['table_pf_not_found']." ".$this->_table_pf."\n-- \n\n";
 	    }
 	    return $r1;
@@ -443,4 +447,3 @@ class DBSQLGenerator extends \BackendModule
 	
 }
 
-?>

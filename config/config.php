@@ -17,7 +17,7 @@
 /**
  * Back end module
  */
-$GLOBALS['BE_MOD']['development']['dbsql_generator'] = array
+$GLOBALS['BE_MOD']['devtools']['dbsql_generator'] = array
 (
 	'callback'   => 'DBSQLGenerator',
 	'icon'       => 'system/modules/dbsql_generator/html/dbsqlgen.png',
