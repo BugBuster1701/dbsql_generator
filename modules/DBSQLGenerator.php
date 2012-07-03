@@ -95,12 +95,12 @@ class DBSQLGenerator extends \BackendModule
 	/**
 	 * Current version of the class.
 	 */
-	const DBSQLGenerator_VERSION = '3.0.0';
+	const DBSQLGEN_VERSION = '3.0.0';
 	
 	/**
 	 * Name of session name
 	 */
-	const DBSQLGEN_SESSION       = 'dbsqlgentable';
+	const DBSQLGEN_SESSION = 'dbsqlgentable';
 
 	/**
 	 * Compile the current element
@@ -118,13 +118,12 @@ class DBSQLGenerator extends \BackendModule
 			// Code für Versionen < 3.0 beta
 		   $this->Template->warning = $GLOBALS['TL_LANG']['BackendDBGenerator']['warning'];
 		}
-
 			
 		$this->Template->referer     = $this->getReferer(ENCODE_AMPERSANDS);
 		$this->Template->backTitle   = specialchars($GLOBALS['TL_LANG']['MSC']['backBT']);
 		$this->Template->Title       = $GLOBALS['TL_LANG']['BackendDBGenerator']['title'];
 		$this->Template->CTitle      = $GLOBALS['TL_LANG']['BackendDBGenerator']['ctitle'];
-		$this->Template->collapsed   =' collapsed';
+		$this->Template->collapsed   = ' collapsed';
 		$this->Template->DatabaseSQL = '';
 		$this->Template->shinit      = '';
 		$this->Template->hint		 = false;
@@ -132,19 +131,17 @@ class DBSQLGenerator extends \BackendModule
 		$this->_arrTables = $this->getFromDB();
 		$this->setBeTheme();
 		$this->getSession(); // table aus session
-		
-		
 
 		if (\Input::post('generate_sql') ==1)
 		{
 		    $this->_table = \Input::post('list_table');
 		    $this->setSession(); // table in session
 			$this->Template->DatabaseSQL = $this->getDatabaseSQL();
-			$this->Template->collapsed ='';
-			$this->Template->hint = $GLOBALS['TL_LANG']['BackendDBGenerator']['hint'];
+			$this->Template->collapsed   = '';
+			$this->Template->hint        = $GLOBALS['TL_LANG']['BackendDBGenerator']['hint'];
 			// Add CSS
 			$GLOBALS['TL_CSS'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/shCore.css?'. HIGHLIGHTER .'|screen';
-			$GLOBALS['TL_CSS'][] = 'system/modules/dbsql_generator/themes/'.$this->_beTheme.'/shThemeContao.css?' . self::DBSQLGenerator_VERSION .'|screen';
+			$GLOBALS['TL_CSS'][] = 'system/modules/dbsql_generator/themes/'.$this->_beTheme.'/shThemeContao.css?' . self::DBSQLGEN_VERSION .'|screen';
 			// Add scripts
 			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/XRegExp.js?' . HIGHLIGHTER;
 			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/shCore.js?' . HIGHLIGHTER;
@@ -161,11 +158,11 @@ class DBSQLGenerator extends \BackendModule
 		    $this->_table_pf = trim(\Input::post('table_prefix'));
 		    $this->setSession(); // table prefix in session
 			$this->Template->DatabaseSQL = $this->getDatabaseSQLpf();
-			$this->Template->collapsed ='';
-			$this->Template->hint = $GLOBALS['TL_LANG']['BackendDBGenerator']['hint'];
+			$this->Template->collapsed   = '';
+			$this->Template->hint        = $GLOBALS['TL_LANG']['BackendDBGenerator']['hint'];
 			// Add CSS
 			$GLOBALS['TL_CSS'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/shCore.css?'. HIGHLIGHTER .'|screen';
-			$GLOBALS['TL_CSS'][] = 'system/modules/dbsql_generator/themes/'.$this->_beTheme.'/shThemeContao.css?' . self::DBSQLGenerator_VERSION .'|screen';
+			$GLOBALS['TL_CSS'][] = 'system/modules/dbsql_generator/themes/'.$this->_beTheme.'/shThemeContao.css?' . self::DBSQLGEN_VERSION .'|screen';
 			// Add scripts
 			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/XRegExp.js?' . HIGHLIGHTER;
 			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/shCore.js?' . HIGHLIGHTER;
@@ -179,9 +176,7 @@ class DBSQLGenerator extends \BackendModule
 		}
 		$this->Template->TableList  = $this->getTableList();
 		$this->Template->TableInput = $this->getTableInput();
-		
-		
-	}
+	} // compile
 	
 	/**
 	 * Get Table List and generate html form
@@ -293,7 +288,7 @@ class DBSQLGenerator extends \BackendModule
 	{
 	    // über Präfix alle Tabellen holen
 	    // über getDatabaseSQL die Statements
-	    $r1 ='';
+	    $r1 = '';
 	    foreach (array_keys($this->_arrTables) as $key => $table)
 	    {
 	    	if (substr($table,0,strlen($this->_table_pf)) == $this->_table_pf)
