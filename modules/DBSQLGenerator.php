@@ -140,12 +140,12 @@ class DBSQLGenerator extends \BackendModule
 			$this->Template->collapsed   = '';
 			$this->Template->hint        = $GLOBALS['TL_LANG']['BackendDBGenerator']['hint'];
 			// Add CSS
-			$GLOBALS['TL_CSS'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/shCore.css?'. HIGHLIGHTER .'|screen';
+			$GLOBALS['TL_CSS'][] = 'assets/highlighter/'.HIGHLIGHTER.'/shCore.css?'. HIGHLIGHTER .'|screen';
 			$GLOBALS['TL_CSS'][] = 'system/modules/dbsql_generator/themes/'.$this->_beTheme.'/shThemeContao.css?' . self::DBSQLGEN_VERSION .'|screen';
 			// Add scripts
-			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/XRegExp.js?' . HIGHLIGHTER;
-			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/shCore.js?' . HIGHLIGHTER;
-			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/shBrushPlain.js?' . HIGHLIGHTER;
+			$GLOBALS['TL_JAVASCRIPT'][] = 'assets/highlighter/'.HIGHLIGHTER.'/XRegExp.js?' . HIGHLIGHTER;
+			$GLOBALS['TL_JAVASCRIPT'][] = 'assets/highlighter/'.HIGHLIGHTER.'/shCore.js?' . HIGHLIGHTER;
+			$GLOBALS['TL_JAVASCRIPT'][] = 'assets/highlighter/'.HIGHLIGHTER.'/shBrushPlain.js?' . HIGHLIGHTER;
 			// Add Init
 			$strInit  = '<script>' . "\n";
 			$strInit .= 'SyntaxHighlighter.defaults.toolbar = false;' . "\n";
@@ -161,12 +161,12 @@ class DBSQLGenerator extends \BackendModule
 			$this->Template->collapsed   = '';
 			$this->Template->hint        = $GLOBALS['TL_LANG']['BackendDBGenerator']['hint'];
 			// Add CSS
-			$GLOBALS['TL_CSS'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/shCore.css?'. HIGHLIGHTER .'|screen';
+			$GLOBALS['TL_CSS'][] = 'assets/highlighter/'.HIGHLIGHTER.'/shCore.css?'. HIGHLIGHTER .'|screen';
 			$GLOBALS['TL_CSS'][] = 'system/modules/dbsql_generator/themes/'.$this->_beTheme.'/shThemeContao.css?' . self::DBSQLGEN_VERSION .'|screen';
 			// Add scripts
-			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/XRegExp.js?' . HIGHLIGHTER;
-			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/shCore.js?' . HIGHLIGHTER;
-			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/'.HIGHLIGHTER.'/shBrushPlain.js?' . HIGHLIGHTER;
+			$GLOBALS['TL_JAVASCRIPT'][] = 'assets/highlighter/'.HIGHLIGHTER.'/XRegExp.js?' . HIGHLIGHTER;
+			$GLOBALS['TL_JAVASCRIPT'][] = 'assets/highlighter/'.HIGHLIGHTER.'/shCore.js?' . HIGHLIGHTER;
+			$GLOBALS['TL_JAVASCRIPT'][] = 'assets/highlighter/'.HIGHLIGHTER.'/shBrushPlain.js?' . HIGHLIGHTER;
 			// Add Init
 			$strInit  = '<script>' . "\n";
 			$strInit .= 'SyntaxHighlighter.defaults.toolbar = false;' . "\n";
