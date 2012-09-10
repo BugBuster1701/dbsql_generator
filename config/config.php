@@ -20,7 +20,6 @@
 $GLOBALS['BE_MOD']['devtools']['dbsql_generator'] = array
 (
 	'callback'   => 'DatabaseGenerator\DBSQLGenerator',
-	'icon'       => 'system/modules/dbsql_generator/public/dbsqlgen.png',
+	'icon'       => 'system/modules/dbsql_generator/assets/dbsqlgen.png',
 );
 
-?>
