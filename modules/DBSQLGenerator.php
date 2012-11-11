@@ -1,32 +1,24 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php 
 
 /**
  * Contao Open Source CMS
  * Copyright (C) 2005-2012 Leo Feyer
  *
- * Formerly known as TYPOlight Open Source CMS.
- *
- * This program is free software: you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation, either
- * version 3 of the License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- * 
- * You should have received a copy of the GNU Lesser General Public
- * License along with this program. If not, please visit the Free
- * Software Foundation website at <http://www.gnu.org/licenses/>.
+ * @link http://www.contao.org
+ * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  *
  * PHP version 5
  * @copyright  Glen Langer 2011..2012 
  * @author     BugBuster 
  * @package    DatabaseGenerator 
  * @license    LGPL 
- * @filesource
  */
+
+
+/**
+ * Run in a custom namespace, so the class can be replaced
+ */
+namespace BugBuster\DatabaseGenerator;
 
 /**
  * Class DBSQLGenerator
@@ -35,7 +27,7 @@
  * @author     BugBuster 
  * @package    DatabaseGenerator
  */
-class DBSQLGenerator extends BackendModule
+class DBSQLGenerator extends \BackendModule
 {
 
 	/**
@@ -103,34 +95,35 @@ class DBSQLGenerator extends BackendModule
 	/**
 	 * Current version of the class.
 	 */
-	const DBSQLGenerator_VERSION = '1.3.1';
+	const DBSQLGEN_VERSION = '3.0.0';
 	
 	/**
 	 * Name of session name
 	 */
-	const DBSQLGEN_SESSION       = 'dbsqlgentable';
+	const DBSQLGEN_SESSION = 'dbsqlgentable';
 
 	/**
 	 * Compile the current element
 	 */
 	protected function compile()
 	{
-		if (version_compare(VERSION . '.' . BUILD, '2.9.9', '>'))
+		if (version_compare(VERSION, '2.99', '>'))
 		{
-		   // Code für Versionen ab 2.10 rc1
+		   // Code für Versionen ab 3.0 beta
 		   $this->_token = REQUEST_TOKEN;
 		   $this->Template->warning = false;
-		} else {
-			// Code für Versionen < 2.10.0
+		} 
+		else 
+		{
+			// Code für Versionen < 3.0 beta
 		   $this->Template->warning = $GLOBALS['TL_LANG']['BackendDBGenerator']['warning'];
 		}
-
 			
 		$this->Template->referer     = $this->getReferer(ENCODE_AMPERSANDS);
 		$this->Template->backTitle   = specialchars($GLOBALS['TL_LANG']['MSC']['backBT']);
 		$this->Template->Title       = $GLOBALS['TL_LANG']['BackendDBGenerator']['title'];
 		$this->Template->CTitle      = $GLOBALS['TL_LANG']['BackendDBGenerator']['ctitle'];
-		$this->Template->collapsed   =' collapsed';
+		$this->Template->collapsed   = ' collapsed';
 		$this->Template->DatabaseSQL = '';
 		$this->Template->shinit      = '';
 		$this->Template->hint		 = false;
@@ -138,23 +131,21 @@ class DBSQLGenerator extends BackendModule
 		$this->_arrTables = $this->getFromDB();
 		$this->setBeTheme();
 		$this->getSession(); // table aus session
-		
-		
 
-		if ($this->Input->post('generate_sql') ==1)
+		if (\Input::post('generate_sql') ==1)
 		{
-		    $this->_table = $this->Input->post('list_table');
+		    $this->_table = \Input::post('list_table');
 		    $this->setSession(); // table in session
 			$this->Template->DatabaseSQL = $this->getDatabaseSQL();
-			$this->Template->collapsed ='';
-			$this->Template->hint = $GLOBALS['TL_LANG']['BackendDBGenerator']['hint'];
+			$this->Template->collapsed   = '';
+			$this->Template->hint        = $GLOBALS['TL_LANG']['BackendDBGenerator']['hint'];
 			// Add CSS
-			$GLOBALS['TL_CSS'][] = 'plugins/highlighter/shCore.css?'. HIGHLIGHTER .'|screen';
-			$GLOBALS['TL_CSS'][] = 'system/modules/dbsql_generator/themes/'.$this->_beTheme.'/shThemeContao.css?' . self::DBSQLGenerator_VERSION .'|screen';
+			$GLOBALS['TL_CSS'][] = 'assets/highlighter/'.HIGHLIGHTER.'/shCore.css?'. HIGHLIGHTER .'|screen';
+			$GLOBALS['TL_CSS'][] = 'system/modules/dbsql_generator/themes/'.$this->_beTheme.'/shThemeContao.css?' . self::DBSQLGEN_VERSION .'|screen';
 			// Add scripts
-			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/XRegExp.js?' . HIGHLIGHTER;
-			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/shCore.js?' . HIGHLIGHTER;
-			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/shBrushPlain.js?' . HIGHLIGHTER;
+			$GLOBALS['TL_JAVASCRIPT'][] = 'assets/highlighter/'.HIGHLIGHTER.'/XRegExp.js?' . HIGHLIGHTER;
+			$GLOBALS['TL_JAVASCRIPT'][] = 'assets/highlighter/'.HIGHLIGHTER.'/shCore.js?' . HIGHLIGHTER;
+			$GLOBALS['TL_JAVASCRIPT'][] = 'assets/highlighter/'.HIGHLIGHTER.'/shBrushPlain.js?' . HIGHLIGHTER;
 			// Add Init
 			$strInit  = '<script>' . "\n";
 			$strInit .= 'SyntaxHighlighter.defaults.toolbar = false;' . "\n";
@@ -162,20 +153,20 @@ class DBSQLGenerator extends BackendModule
 			$strInit .= '</script>';
 			$this->Template->shinit = $strInit;
 		}
-		if ($this->Input->post('generate_sql_pf') ==1)
+		if (\Input::post('generate_sql_pf') ==1)
 		{
-		    $this->_table_pf = trim($this->Input->post('table_prefix'));
+		    $this->_table_pf = trim(\Input::post('table_prefix'));
 		    $this->setSession(); // table prefix in session
 			$this->Template->DatabaseSQL = $this->getDatabaseSQLpf();
-			$this->Template->collapsed ='';
-			$this->Template->hint = $GLOBALS['TL_LANG']['BackendDBGenerator']['hint'];
+			$this->Template->collapsed   = '';
+			$this->Template->hint        = $GLOBALS['TL_LANG']['BackendDBGenerator']['hint'];
 			// Add CSS
-			$GLOBALS['TL_CSS'][] = 'plugins/highlighter/shCore.css?'. HIGHLIGHTER .'|screen';
-			$GLOBALS['TL_CSS'][] = 'system/modules/dbsql_generator/themes/'.$this->_beTheme.'/shThemeContao.css?' . self::DBSQLGenerator_VERSION .'|screen';
+			$GLOBALS['TL_CSS'][] = 'assets/highlighter/'.HIGHLIGHTER.'/shCore.css?'. HIGHLIGHTER .'|screen';
+			$GLOBALS['TL_CSS'][] = 'system/modules/dbsql_generator/themes/'.$this->_beTheme.'/shThemeContao.css?' . self::DBSQLGEN_VERSION .'|screen';
 			// Add scripts
-			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/XRegExp.js?' . HIGHLIGHTER;
-			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/shCore.js?' . HIGHLIGHTER;
-			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/highlighter/shBrushPlain.js?' . HIGHLIGHTER;
+			$GLOBALS['TL_JAVASCRIPT'][] = 'assets/highlighter/'.HIGHLIGHTER.'/XRegExp.js?' . HIGHLIGHTER;
+			$GLOBALS['TL_JAVASCRIPT'][] = 'assets/highlighter/'.HIGHLIGHTER.'/shCore.js?' . HIGHLIGHTER;
+			$GLOBALS['TL_JAVASCRIPT'][] = 'assets/highlighter/'.HIGHLIGHTER.'/shBrushPlain.js?' . HIGHLIGHTER;
 			// Add Init
 			$strInit  = '<script>' . "\n";
 			$strInit .= 'SyntaxHighlighter.defaults.toolbar = false;' . "\n";
@@ -185,9 +176,7 @@ class DBSQLGenerator extends BackendModule
 		}
 		$this->Template->TableList  = $this->getTableList();
 		$this->Template->TableInput = $this->getTableInput();
-		
-		
-	}
+	} // compile
 	
 	/**
 	 * Get Table List and generate html form
@@ -275,7 +264,8 @@ class DBSQLGenerator extends BackendModule
 	 */
 	protected function getDatabaseSQL()
 	{
-	    if ($this->Database->tableExists($this->_table) === false) {
+	    if ($this->Database->tableExists($this->_table) === false) 
+	    {
 	    	return "Wrong Selection, Table not found";
 	    }
 	    //$arrTables = $this->getFromDB();
@@ -298,7 +288,7 @@ class DBSQLGenerator extends BackendModule
 	{
 	    // über Präfix alle Tabellen holen
 	    // über getDatabaseSQL die Statements
-	    $r1 ='';
+	    $r1 = '';
 	    foreach (array_keys($this->_arrTables) as $key => $table)
 	    {
 	    	if (substr($table,0,strlen($this->_table_pf)) == $this->_table_pf)
@@ -308,7 +298,8 @@ class DBSQLGenerator extends BackendModule
 	    		$r1 .= "\n";
 	    	}
 	    }
-	    if ($r1 == '') {
+	    if ($r1 == '') 
+	    {
 	    	$r1 = "-- --------------------------------------------------------\n\n-- \n-- ".$GLOBALS['TL_LANG']['BackendDBGenerator']['table_pf_not_found']." ".$this->_table_pf."\n-- \n\n";
 	    }
 	    return $r1;
@@ -326,7 +317,7 @@ class DBSQLGenerator extends BackendModule
 		//$tables = preg_grep('/^tl_/i', $this->Database->listTables());
 		$tables = $this->Database->listTables();
 
-		if (!count($tables))
+		if (empty($tables))
 		{
 			return array();
 		}
@@ -335,7 +326,7 @@ class DBSQLGenerator extends BackendModule
 
 		foreach ($tables as $table)
 		{
-			$fields = $this->Database->listFields($table);
+			$fields = $this->Database->listFields($table, true);
 
 			foreach ($fields as $field)
 			{
@@ -349,20 +340,16 @@ class DBSQLGenerator extends BackendModule
 					// Field type
 					if (strlen($field['length']))
 					{
-						$field['type'] .= '(' . $field['length'] . (strlen($field['precision']) ? ',' . $field['precision'] : '') . ')';
+						$field['type'] .= '(' . $field['length'] . (($field['precision'] != '') ? ',' . $field['precision'] : '') . ')';
 
 						unset($field['length']);
 						unset($field['precision']);
 					}
 
 					// Default values
-					if (in_array(strtolower($field['type']), array('text', 'tinytext', 'mediumtext', 'longtext', 'blob', 'tinyblob', 'mediumblob', 'longblob')) || stristr($field['extra'], 'auto_increment'))
+				    if (in_array(strtolower($field['type']), array('text', 'tinytext', 'mediumtext', 'longtext', 'blob', 'tinyblob', 'mediumblob', 'longblob')) || stristr($field['extra'], 'auto_increment') || $field['default'] === null || strtolower($field['default']) == 'null')
 					{
 						unset($field['default']);
-					}
-					elseif (is_null($field['default']) || strtolower($field['default']) == 'null')
-					{
-						$field['default'] = "default NULL";
 					}
 					else
 					{
@@ -455,4 +442,3 @@ class DBSQLGenerator extends BackendModule
 	
 }
 
-?>
