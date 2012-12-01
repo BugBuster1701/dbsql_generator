@@ -351,6 +351,10 @@ class DBSQLGenerator extends \BackendModule
 					{
 						unset($field['default']);
 					}
+					elseif ($field['default'] === 'CURRENT_TIMESTAMP')
+					{
+					    $field['default'] = "default " . $field['default'];
+					}
 					else
 					{
 						$field['default'] = "default '" . $field['default'] . "'";
