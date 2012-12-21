@@ -364,7 +364,7 @@ class DBSQLGenerator extends BackendModule
 					{
 						$field['default'] = "default NULL";
 					}
-					elseif ($field['default'] === 'CURRENT_TIMESTAMP')
+					elseif (in_array(strtolower($field['default']), array('current_date', 'current_time', 'current_timestamp')))
 					{
 					    $field['default'] = "default " . $field['default'];
 					}
